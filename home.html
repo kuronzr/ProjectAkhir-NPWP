@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Homepage</title>
+  </head>
+  <body>
+    <header>
+      <h1>Yaudah LostnFound</h1>
+      <nav>
+        <ul>
+          <li><a href="index.php">Beranda</a></li>
+          <li><a href="tambah_barang.php">Laporkan Barang</a></li>
+          <li><a href="bantuan.php">Bantuan</a></li>
+          <li><a href="testimoni.php">Testimoni</a></li>
+          <li><a href="profile.php">Profil Saya</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <hr />
+
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Temukan Kembali Barangmu yang Hilang</h2>
+        <p>
+          Blah blah blah, ini adalah platform untuk melaporkan dan menemukan barang hilang di kampus. Barangmu hilang ya? Kasihan, blah blah blah...
+        </p>
+
+        <form action="index.php" method="GET">
+          <input
+            type="text"
+            name="keyword"
+            placeholder="Cari nama barang (Contoh: Dompet, KTM, Kunci)..."
+          />
+          <button type="submit">Cari</button>
+        </form>
+        <br />
+        <a href="tambah_barang.php"><button>+ Laporkan Barang Baru</button></a>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80" alt="Ilustrasi penemuan barang kampus"
+        />
+      </div>
+    </section>
+
+    <hr />
+
+    <section>
+      <h3>Kategori Pilihan</h3>
+      <ul>
+        <li><a href="#">Elektronik (HP/Laptop)</a></li>
+        <li><a href="#">Dompet & Uang</a></li>
+        <li><a href="#">Dokumen & KTM</a></li>
+        <li><a href="#">Kunci Kendaraan</a></li>
+        <li><a href="#">Lainnya</a></li>
+      </ul>
+    </section>
+
+    <hr />
+
+    <section>
+      <h2>Laporan Terbaru</h2>
+
+      <p>
+        Filter:
+        <a href="#">Semua</a> | <a href="#">Barang Hilang</a> |
+        <a href="#">Barang Ditemukan</a>
+      </p>
+
+      <article>
+        <p><strong>Pelapor:</strong> Nijar (Teknik Informatika)</p>
+        <p><strong>Status:</strong> <mark>Hilang</mark></p>
+        <div>
+          <p>[ Gambar Barang: Dompet Kulit Coklat ]</p>
+        </div>
+        <h3>Dompet Hilang di Dekat Kantin Fakultas</h3>
+        <p>
+          Hilang pada hari Senin kemarin, berisi KTM atas nama Nijar dan
+          beberapa kartu penting. Mohon hubungi jika menemukan.
+        </p>
+        <a href="detail_barang.php?id=1">Lihat Detail & Klaim</a>
+      </article>
+
+      <hr />
+
+      <article>
+        <p><strong>Pelapor:</strong> Siti Rahma (Manajemen)</p>
+        <p><strong>Status:</strong> <mark>Ditemukan</mark></p>
+        <div>
+          <p>[ Gambar Barang: Kunci Kontak Motor Honda ]</p>
+        </div>
+        <h3>Kunci Motor Honda Ketemu di Parkiran Gedung F</h3>
+        <p>
+          Saya menemukan kunci sepeda motor merk Honda dengan gantungan tali
+          biru di area parkiran utama. Silakan verifikasi kepemilikan.
+        </p>
+        <a href="detail_barang.php?id=2">Lihat Detail & Klaim</a>
+      </article>
+    </section>
+
+    <hr />
+
+    <footer>
+      <p>
+        &copy; 2026 Terserah Nijar mau diisi apa. All rights
+        reserved.
+      </p>
+    </footer>
+  </body>
+</html>
