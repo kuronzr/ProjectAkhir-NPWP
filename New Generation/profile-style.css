@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #222222;
+    line-height: 1.6;
+    padding: 0 20px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+/* kartu profile */
+.profile-card {
+    margin-top: 30px;
+    min-height: 480px;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+/* banner bawaan (dipake juga di popup) */
+.profile-banner,
+.modal-banner {
+    background-color: #2a2a2a; 
+    background-size: 80px 60px, 80px 60px, 100% 100%;
+}
+
+.profile-banner {
+    height: 150px;
+    border-bottom: 2px solid #000000;
+}
+
+.profile-body {
+    position: relative;
+    padding: 0 30px 40px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    margin-top: -45px;
+    border-radius: 50%;
+    background-color: #000000;
+    border: 2px solid #000000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-default {
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 20%;
+    color: #ffffff;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.btn-edit {
+    position: absolute;
+    top: 18px;
+    right: 30px;
+    padding: 10px 18px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-edit:hover {
+    background-color: #333333;
+}
+
+.profile-name {
+    margin-top: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #222222;
+}
+
+.profile-desc {
+    margin-top: 28px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #222222;
+    word-break: break-word;
+    white-space: pre-line;
+}
+
+/* popup edit profile */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.45);
+    overflow-y: auto;
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* banner dalem popup */
+.modal-banner {
+    position: relative;
+    height: 90px;
+    border-bottom: 2px solid #000000;
+}
+
+.banner-actions {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.banner-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.banner-btn:hover {
+    opacity: 0.75;
+}
+
+.banner-btn svg {
+    width: 26px;
+    height: 26px;
+    color: #ffffff;
+}
+
+/* foto profil di popup */
+.modal-avatar {
+    position: relative;
+    width: 78px;
+    height: 78px;
+    margin: -45px 0 0 12px;
+    border-radius: 50%;
+    background: #000000;
+    border: 2px solid #000000;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-avatar .avatar-default,
+.modal-avatar .avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.avatar-cam {
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.avatar-cam:hover {
+    background: #e8e8e8;
+}
+
+.avatar-cam svg {
+    width: 22px;
+    height: 22px;
+    color: #000000;
+}
+
+/* form di popup */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 12px 20px;
+}
+
+.modal-form input[type="text"],
+.modal-form textarea {
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 14px;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 16px;
+    background: #ffffff;
+    color: #222222;
+    outline: none;
+}
+
+.modal-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-form input[type="text"]::placeholder,
+.modal-form textarea::placeholder {
+    color: #222222;
+}
+
+.modal-form input[type="text"]:focus,
+.modal-form textarea:focus {
+    border-color: #110751;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 28px;
+}
+
+.btn-confirm {
+    padding: 10px 24px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-confirm:hover {
+    background-color: #333333;
+}
+
+/* responsif */
+@media (max-width: 600px) {
+    .profile-banner {
+        height: 110px;
+    }
+
+    .profile-body {
+        padding: 0 18px 30px;
+    }
+
+    .btn-edit {
+        right: 18px;
+    }
+
+    .profile-desc {
+        font-size: 16px;
+    }
+
+    .modal-footer {
+        padding-right: 0;
+    }
+}
