@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #222;
+    line-height: 1.6;
+    padding: 0 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* judul halaman */
+.testi-head {
+    padding: 40px 0 10px;
+    text-align: center;
+}
+
+.testi-head h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.testi-head p {
+    color: #666;
+    font-size: 15px;
+}
+
+/* kartu testimoni */
+.testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 30px 0 50px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.testi-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.testi-card:hover {
+    border-color: #999;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.testi-card img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #fafafa;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.testi-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px 24px 24px;
+}
+
+.testi-body mark {
+    align-self: flex-start;
+    margin-bottom: 12px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: #f2f2f2;
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.testi-desc {
+    flex: 1;
+    margin-bottom: 16px;
+    color: #666;
+    font-size: 15px;
+}
+
+.testi-body h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.3;
+}
+
+/* form kirim testimoni (gaya sama seperti form laporan) */
+.testi-form-wrap {
+    padding: 50px 0;
+}
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-container textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-container input[type="text"]:focus,
+.form-container textarea:focus {
+    border-color: #110751;
+    outline: none;
+}
+
+.form-container input[type="file"] {
+    display: none;
+}
+
+.form-container .border_kotak {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 125px;
+    height: 125px;
+    margin-bottom: 15px;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ccc;
+    transition: all 0.2s ease;
+}
+
+.form-container .border_kotak:hover {
+    background: #f0f0f0;
+}
+
+.form-container .preview-container {
+    position: relative;
+    width: 125px;
+    height: 125px;
+    margin-bottom: 15px;
+}
+
+.form-container .preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.form-container .btn-remove {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    background: #d9534f;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.form-container .btn-remove:hover {
+    background: #b52b27;
+}
+
+.form-container input[type="submit"] {
+    padding: 10px;
+    background: #110751;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* footer gelap full width, sama seperti About & Home */
+footer {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 36px 20px;
+    background: #212121;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}

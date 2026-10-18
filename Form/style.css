@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: poppins, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    margin: 0 15px;
+    width: 100%;
+    max-width: 1280px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.daftar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.daftar a {
+    text-decoration: underline;
+    color: #110751;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="date"],
+.form-container input[type="file"],
+.form-container input[type="password"],
+.form-container select,
+.form-container textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.form-container select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.form-container textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.form-container input[type="submit"] {
+    padding: 10px;
+    background-color: #110751;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.form-container input[type="text"]::placeholder,
+.form-container input[type="date"]::placeholder,
+.form-container select::placeholder,
+.form-container textarea::placeholder {
+    color: #aaa;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="date"]:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #110751;
+    outline: none;
+}
+
+.form-container input[type="file"] {
+    display: none;
+}
+
+.form-container .border_kotak {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 125px;
+    height: 125px;
+    margin-bottom: 15px;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color:  #ccc;
+    transition: all 0.2s ease;
+}
+
+.form-container .border_kotak:hover {
+    background-color: #f0f0f0;
+}
