@@ -61,16 +61,16 @@ class LaporanModel
         }
 
         if ($filter == 'hilang') {
-            $sql = "SELECT id, nama, 'Hilang' AS status, deskripsi, tempat, tanggal, created_at, 'kehilangan' AS tipe, kategori, notelp AS no_hp 
+            $sql = "SELECT id, nama, 'Barang Hilang' AS status, deskripsi, tempat, tanggal, created_at, 'kehilangan' AS tipe, kategori, notelp AS no_hp 
                 FROM laporan_kehilangan $whereKategori";
         } elseif ($filter == 'ditemukan') {
-            $sql = "SELECT id, nama, 'Ditemukan' AS status, deskripsi, tempat, tanggal, created_at, 'menemukan' AS tipe, kategori, notelp AS no_hp 
+            $sql = "SELECT id, nama, 'Barang Ditemukan' AS status, deskripsi, tempat, tanggal, created_at, 'menemukan' AS tipe, kategori, notelp AS no_hp 
                 FROM laporan_menemukan $whereKategori";
         } else {
-            $sql = "SELECT id, nama, 'Hilang' AS status, deskripsi, tempat, tanggal, created_at, 'kehilangan' AS tipe, kategori, notelp AS no_hp 
+            $sql = "SELECT id, nama, 'Barang Hilang' AS status, deskripsi, tempat, tanggal, created_at, 'kehilangan' AS tipe, kategori, notelp AS no_hp 
                 FROM laporan_kehilangan $whereKategori
                 UNION ALL
-                SELECT id, nama, 'Ditemukan' AS status, deskripsi, tempat, tanggal, created_at, 'menemukan' AS tipe, kategori, notelp AS no_hp 
+                SELECT id, nama, 'Barang Ditemukan' AS status, deskripsi, tempat, tanggal, created_at, 'menemukan' AS tipe, kategori, notelp AS no_hp 
                 FROM laporan_menemukan $whereKategori";
         }
 
@@ -104,10 +104,10 @@ class LaporanModel
     {
         $user_id = (int) $user_id;
 
-        $sql = "SELECT id, nama, 'Hilang' AS status, deskripsi, tempat, tanggal, created_at, 'kehilangan' AS tipe, kategori, notelp AS no_hp 
+        $sql = "SELECT id, nama, 'Barang Hilang' AS status, deskripsi, tempat, tanggal, created_at, 'kehilangan' AS tipe, kategori, notelp AS no_hp 
             FROM laporan_kehilangan WHERE user_id = '$user_id'
             UNION ALL
-            SELECT id, nama, 'Ditemukan' AS status, deskripsi, tempat, tanggal, created_at, 'menemukan' AS tipe, kategori, notelp AS no_hp 
+            SELECT id, nama, 'Barang Ditemukan' AS status, deskripsi, tempat, tanggal, created_at, 'menemukan' AS tipe, kategori, notelp AS no_hp 
             FROM laporan_menemukan WHERE user_id = '$user_id'
             ORDER BY created_at DESC";
 
