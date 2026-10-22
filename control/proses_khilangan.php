@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo "<script>alert('Laporan kehilangan berhasil dikirim!'); window.location='../view/home.php';</script>";
     } else {
-        echo "<script>alert('Gagal menyimpan laporan kehilangan.'); window.location='../view/form_khilangan.php';</script>";
+        echo "<script>alert('Gagal mengirim laporan kehilangan.'); window.location='../view/form_khilangan.php';</script>";
     }
 } else {
     header("Location: ../view/form_khilangan.php");

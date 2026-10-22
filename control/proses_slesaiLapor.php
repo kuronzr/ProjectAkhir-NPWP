@@ -17,7 +17,7 @@ if (isset($_GET['id']) && isset($_GET['tipe'])) {
     if ($laporanModel->selesaikanLaporan($id, $tipe, $user_id)) {
         echo "<script>alert('Selamat! Laporan berhasil diselesaikan. Silakan isi testimoni Anda.'); window.location='../view/form_testi.php';</script>";
     } else {
-        echo "<script>alert('Gagal menghapus laporan. Pastikan Anda adalah pemilik laporan ini.'); window.location='../view/profile.php';</script>";
+        echo "<script>alert('Gagal menghapus laporan'); window.location='../view/profile.php';</script>";
     }
 } else {
     header("Location: ../view/profile.php");

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<script>alert('Gagal mengirim keluhan'); window.location='../view/form_keluhan.php';</script>";
         }
     } else {
-        echo "<script>alert('Harap lengkapi semua bidang yang wajib diisi.'); window.location='../view/form_keluhan.php';</script>";
+        echo "<script>alert('Harap lengkapi formnya!'); window.location='../view/form_keluhan.php';</script>";
     }
 } else {
     header("Location: ../view/form_keluhan.php");

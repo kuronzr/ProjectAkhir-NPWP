@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo "<script>alert('Laporan penemuan berhasil dikirim!'); window.location='../view/home.php';</script>";
     } else {
-        echo "<script>alert('Gagal menyimpan laporan penemuan.'); window.location='../view/form_nemu.php';</script>";
+        echo "<script>alert('Gagal mengirim laporan penemuan.'); window.location='../view/form_nemu.php';</script>";
     }
 } else {
     header("Location: ../view/form_nemu.php");
