@@ -9,17 +9,20 @@ const errorMsg = document.getElementById('gambar-error');
 
 let files = [];
 
+// Fungsi untuk menampilkan pesan error
 function showError(msg) {
   errorMsg.textContent = msg;
   errorMsg.classList.toggle('hidden', !msg);
 }
 
+// Fungsi untuk menyinkronkan input file dengan array files
 function syncInput() {
   const dt = new DataTransfer();
   files.forEach((f) => dt.items.add(f));
   input.files = dt.files;
 }
 
+// Fungsi untuk merender preview gambar
 function render() {
   previewList.querySelectorAll('img').forEach((img) => URL.revokeObjectURL(img.src));
   previewList.innerHTML = '';
@@ -50,6 +53,7 @@ function render() {
   info.textContent = `${files.length} gambar dipilih (minimal ${MIN_GAMBAR}, maksimal ${MAX_GAMBAR})`;
 }
 
+// Fungsi untuk menambahkan file ke array files
 function addFiles(list) {
   let ditolak = false;
 

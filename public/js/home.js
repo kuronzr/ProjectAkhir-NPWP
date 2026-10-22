@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Fungsi untuk menutup modal gambar
     function closeModalImage() {
         if (modal) {
             modal.classList.add('hidden');
@@ -84,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Fungsi untuk menutup modal kontak
     function closeModalContact() {
         if (contactModal) {
             contactModal.classList.add('hidden');
