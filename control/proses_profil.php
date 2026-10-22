@@ -3,7 +3,7 @@ session_start();
 require_once '../config/auth.php';
 require_once '../model/userModel.php';
 
-checkAuth(); // Pastikan user sudah login
+checkAuth(); 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userModel = new UserModel();

@@ -23,19 +23,7 @@ class GambarModel
         return mysqli_query($this->db, $sql);
     }
 
-    public function getGambarUtama($laporan_id, $tipe_laporan)
-    {
-        $laporan_id = (int) $laporan_id;
-        $tipe_laporan = mysqli_real_escape_string($this->db, $tipe_laporan);
-
-        $sql = "SELECT nama_file FROM gambar_laporan 
-                WHERE laporan_id = '$laporan_id' AND tipe_laporan = '$tipe_laporan' 
-                LIMIT 1";
-        $result = mysqli_query($this->db, $sql);
-        return mysqli_fetch_assoc($result);
-    }
-
-    // Ambil SEMUA gambar milik laporan
+    // Ambil semua gambar milik laporan
     public function getAllGambarByLaporan($laporan_id, $tipe_laporan)
     {
         $laporan_id = (int) $laporan_id;

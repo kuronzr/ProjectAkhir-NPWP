@@ -1,6 +1,6 @@
 <?php
 require_once '../config/auth.php';
-checkAuth(); // Jika Guest mencoba masuk, akan langsung dialihkan ke login.php
+checkAuth();
 ?>
 
 <!DOCTYPE html>

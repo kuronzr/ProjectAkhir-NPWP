@@ -1,15 +1,23 @@
 <?php
 require_once '../config/auth.php';
-require_once '../model/UserModel.php';
-checkAuth(); // Pastikan user sudah login
+require_once '../model/userModel.php';
+require_once '../model/laporModel.php';
+require_once '../model/gambarModel.php';
 
+checkAuth();
+
+$userId    = $_SESSION['user']['id'];
 $userModel = new UserModel();
-$userData  = $userModel->getUserById($_SESSION['user']['id']);
+$userData  = $userModel->getUserById($userId);
 
 $nama   = htmlspecialchars($userData['nama'] ?? 'Pengguna');
 $bio    = htmlspecialchars($userData['bio'] ?? 'Belum ada deskripsi profil.');
 $avatar = !empty($userData['avatar']) ? '../public/uploads/' . htmlspecialchars($userData['avatar']) : '';
 $banner = !empty($userData['banner']) ? '../public/uploads/' . htmlspecialchars($userData['banner']) : '';
+
+$laporanModel = new LaporanModel();
+$gambarModel  = new GambarModel();
+$myPostings   = $laporanModel->getLaporanByUserId($userId);
 ?>
 
 <!doctype html>
@@ -94,6 +102,59 @@ $banner = !empty($userData['banner']) ? '../public/uploads/' . htmlspecialchars(
         <p class="profile-desc" id="profile-desc"><?= $bio; ?></p>
       </div>
     </main>
+
+    <!-- Section Daftar Postingan Saya -->
+    <section style="max-width: 800px; margin: 30px auto; padding: 0 20px;">
+      <h3 style="color: #082f49; border-bottom: 2px solid #082f49; padding-bottom: 8px; margin-bottom: 20px;">
+        Postingan Saya
+      </h3>
+
+      <?php if (!empty($myPostings)): ?>
+        <?php foreach ($myPostings as $row): ?>
+          <?php
+          $semua_gambar = $gambarModel->getAllGambarByLaporan($row['id'], $row['tipe']);
+          ?>
+
+          <article style="background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 20px; margin-bottom: 20px; position: relative;">
+            <p style="margin-bottom: 5px;">
+              <strong>Status Laporan:</strong> 
+              <mark style="background: #ffd500; color: #082f49; font-weight: bold; padding: 2px 8px; border-radius: 4px;">
+                <?= ($row['tipe'] === 'kehilangan') ? 'Barang Hilang' : 'Barang Ditemukan'; ?>
+              </mark>
+            </p>
+
+            <!-- Tampilkan Gambar -->
+            <div style="margin: 10px 0; display: flex; gap: 10px; flex-wrap: wrap;">
+              <?php if (!empty($semua_gambar)): ?>
+                <?php foreach ($semua_gambar as $g): ?>
+                  <img src="../public/uploads/<?= htmlspecialchars($g['nama_file']); ?>" 
+                       alt="Gambar Barang" 
+                       style="max-width: 100px; height: 100px; object-fit: cover; border-radius: 6px;">
+                <?php endforeach; ?>
+              <?php else: ?>
+                <img src="../public/gambar/default.jpg" alt="Default" style="max-width: 100px; border-radius: 6px;">
+              <?php endif; ?>
+            </div>
+
+            <h4 style="margin: 10px 0 5px 0; font-size: 1.1rem; color: #1e293b;"><?= htmlspecialchars($row['deskripsi']); ?></h4>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">
+              Terakhir di <strong><?= htmlspecialchars($row['tempat']); ?></strong> pada tanggal <?= date('d M Y', strtotime($row['tanggal'])); ?>.
+            </p>
+
+            <!-- Tombol Konfirmasi Selesai -->
+            <a href="../control/proses_slesaiLapor.php?id=<?= $row['id']; ?>&tipe=<?= $row['tipe']; ?>" 
+               onclick="return confirm('Apakah barang ini sudah kembali/selesai ditangani? Laporan akan dihapus dari beranda.')"
+               style="display: inline-block; background-color: #16a34a; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.88rem;">
+               &#10004; Konfirmasi Selesai
+            </a>
+          </article>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p style="text-align: center; color: #64748b; background: #fff; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0;">
+          Anda belum pernah membuat laporan kehilangan atau penemuan barang.
+        </p>
+      <?php endif; ?>
+    </section>
 
     <!-- Modal Popup Edit Profile -->
     <div class="modal-overlay hidden" id="modal-overlay">

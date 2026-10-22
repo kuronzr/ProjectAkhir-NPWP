@@ -2,7 +2,7 @@
 session_start();
 require_once '../model/keluhanModel.php';
 
-// Proteksi Halaman: Hanya Admin yang bisa mengakses
+// Cek apakah user sudah login dan memiliki role admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     echo "<script>alert('Akses ditolak! Halaman ini khusus untuk Admin.'); window.location='home.php';</script>";
     exit();

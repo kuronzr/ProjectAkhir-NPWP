@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // ==========================================
-    // 1. LOGIKA MODAL PREVIEW GAMBAR FULLSCREEN
-    // ==========================================
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('imgExpanded');
     const btnBack = document.getElementById('btnBackViewer');
@@ -41,21 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
         btnBack.addEventListener('click', closeModalImage);
     }
 
-    // ==========================================
-    // 2. LOGIKA MODAL POPUP KONTAK / KLAIM
-    // ==========================================
     const contactModal = document.getElementById('contactModal');
     const btnCloseContact = document.getElementById('btnCloseContact');
     const modalTitle = document.getElementById('modalTitle');
     const modalNama = document.getElementById('modalNama');
     const modalNoHp = document.getElementById('modalNoHp');
 
-    // Sembunyikan modal kontak saat pertama kali dimuat
     if (contactModal) {
         contactModal.classList.add('hidden');
     }
 
-    // Menggunakan Event Delegation agar klik tombol .btn-kontak selalu terdeteksi
     document.addEventListener('click', function (e) {
         const btn = e.target.closest('.btn-kontak');
         if (btn) {
@@ -92,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Fungsi Tutup Modal Kontak
     function closeModalContact() {
         if (contactModal) {
             contactModal.classList.add('hidden');
@@ -103,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
         btnCloseContact.addEventListener('click', closeModalContact);
     }
 
-    // Tutup Modal Kontak saat area latar/luar diklik
     if (contactModal) {
         contactModal.addEventListener('click', function (e) {
             if (e.target === contactModal) {
@@ -112,9 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ==========================================
-    // 3. TUKAR TOMBOL ESCAPE (TUTUP KEDUA MODAL)
-    // ==========================================
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             closeModalImage();

@@ -17,19 +17,15 @@ class UserModel
         $nama = mysqli_real_escape_string($this->db, $nama);
         $email = mysqli_real_escape_string($this->db, $email);
 
-        // 1. Cek apakah email sudah terdaftar sebelumnya
         $checkSql = "SELECT id FROM users WHERE email = '$email' LIMIT 1";
         $checkResult = mysqli_query($this->db, $checkSql);
 
         if (mysqli_num_rows($checkResult) > 0) {
-            // Email sudah ada di database
             return false;
         }
 
-        // 2. Hash password demi keamanan
+        // Hash password demi keamanan
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // 3. Masukkan data pengguna baru
         $sql = "INSERT INTO users (nama, email, password, role) VALUES ('$nama', '$email', '$hashedPassword', 'user')";
         return mysqli_query($this->db, $sql);
     }
@@ -43,10 +39,10 @@ class UserModel
 
         if ($user = mysqli_fetch_assoc($res)) {
             if (password_verify($password, $user['password'])) {
-                return $user; // Password cocok
+                return $user; 
             }
         }
-        return false; // Email atau password salah
+        return false; 
     }
 
     // Ambil data user lengkap berdasarkan ID

@@ -1,42 +1,39 @@
 <?php
+session_start();
 require_once '../model/testiModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $testimoniModel = new TestimoniModel();
-
     $nama = $_POST['nama'] ?? '';
     $barang = $_POST['barang'] ?? '';
-    $deskripsi = $_POST['deskripsi'] ?? '';
-    $gambar = null;
+    $pesan = $_POST['deskripsi'] ?? '';
+    $gambarNama = null;
 
-    if (!empty($nama) && !empty($barang) && !empty($deskripsi)) {
-        // Proses upload gambar jika ada
-        if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
-            $target_dir = "../public/uploads/";
-            if (!is_dir($target_dir)) {
-                mkdir($target_dir, 0777, true);
-            }
+    if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
+        $target_dir = "../public/uploads/";
 
-            $file_name = time() . '_' . uniqid() . '_' . basename($_FILES['gambar']['name']);
-            $target_file = $target_dir . $file_name;
-
-            if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file)) {
-                $gambar = $file_name;
-            }
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0777, true);
         }
 
-        $simpan = $testimoniModel->tambahTestimoni($nama, $barang, $deskripsi, $gambar);
+        $file_name = time() . '_' . uniqid() . '_' . basename($_FILES['gambar']['name']);
+        $target_file = $target_dir . $file_name;
 
-        if ($simpan) {
-            echo "<script>alert('Testimoni berhasil dikirim!'); window.location='../view/testimoni.php';</script>";
-        } else {
-            echo "<script>alert('Gagal mengirim testimoni.'); window.location='../view/testimoni.php';</script>";
+        if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file)) {
+            $gambarNama = $file_name;
         }
     } else {
-        echo "<script>alert('Harap isi semua kolom yang wajib!'); window.location='../view/testimoni.php';</script>";
+        echo "<script>alert('Masukin min 1 gambar'); window.history.back();</script>";
+        exit();
+    }
+
+    $testimoniModel = new TestimoniModel();
+    if ($testimoniModel->tambahTestimoni($nama, $barang, $pesan, $gambarNama)) {
+        echo "<script>alert('Terima kasih! Testimoni Anda berhasil dikirim.'); window.location='../view/testimoni.php';</script>";
+    } else {
+        echo "<script>alert('Gagal mengirim testimoni.'); window.history.back();</script>";
     }
 } else {
-    header("Location: ../view/testimoni.php");
+    header("Location: ../view/form_testi.php");
     exit();
 }
 ?>

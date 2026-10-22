@@ -11,7 +11,7 @@ $isLoggedIn = isset($_SESSION['user']);
 $userName = $isLoggedIn ? $_SESSION['user']['nama'] : 'Guest';
 $isAdmin = $isLoggedIn && isset($_SESSION['user']['role']) && ($_SESSION['user']['role'] === 'admin');
 
-// Ambil parameter filter dari URL
+// Ambil filter dan kategori dari URL
 $filter = isset($_GET['filter']) ? $_GET['filter'] : 'semua';
 $kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
 
@@ -82,7 +82,9 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
         Platform terpadu untuk melaporkan dan menemukan barang hilang di lingkungan kampus.
       </p>
 
-      <a href="form_khilangan.php"><button>+ Laporkan Kehilangan Barang</button></a>
+      <?php if (!$isAdmin): ?>
+        <a href="form_khilangan.php"><button>+ Laporkan Kehilangan Barang</button></a>
+      <?php endif; ?>
     </div>
 
     <div class="hero-image">
@@ -127,15 +129,13 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
       <?php if (!empty($laporanList)): ?>
         <?php foreach ($laporanList as $row): ?>
           <?php
-          // Ambil SEMUA gambar untuk laporan ini (bukan hanya gambar utama)
           $semua_gambar = $gambarModel->getAllGambarByLaporan($row['id'], $row['tipe']);
           ?>
 
           <article style="position: relative; padding-bottom: 20px;">
             <p><strong>Pelapor:</strong> <?= htmlspecialchars($row['nama']); ?></p>
-            <p><strong>Status:</strong> <mark><?= htmlspecialchars($row['status']); ?></mark></p>
+            <p><strong>Status:</strong> <?= htmlspecialchars($row['status']); ?></p>
 
-            <!-- Container untuk Menampilkan Banyak Gambar -->
             <div style="margin: 10px 0; display: flex; gap: 10px; flex-wrap: wrap;">
               <?php if (!empty($semua_gambar)): ?>
                 <?php foreach ($semua_gambar as $g): ?>
@@ -169,7 +169,7 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
             <?php endif; ?>
           </article>
 
-          <hr/>
+          <hr />
         <?php endforeach; ?>
 
       <?php else: ?>

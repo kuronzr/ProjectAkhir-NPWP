@@ -1,6 +1,6 @@
 <?php
 require_once '../config/auth.php';
-checkAuth(); // Jika Guest mencoba masuk, akan langsung dialihkan ke login.php
+checkAuth();
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +69,7 @@ checkAuth(); // Jika Guest mencoba masuk, akan langsung dialihkan ke login.php
       <label for="notelp">Nomor Telepon</label>
       <input type="text" name="notelp" id="notelp" placeholder="Masukkan nomor telepon Anda" required>
 
-      <label for="gambar">Gambar (minimal 3)</label>
+      <label for="gambar">Gambar (minimal 1)</label>
       <input type="file" name="gambar[]" id="gambar" accept="image/*" multiple>
       <label for="gambar" class="border_kotak dropzone" id="dropzone">
         <span>+</span>

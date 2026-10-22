@@ -1,10 +1,12 @@
 <?php
 require_once '../config/auth.php';
-checkAuth();
 require_once '../model/testiModel.php';
+checkAuth();
+
 $testimoniModel = new TestimoniModel();
 $listTestimoni = $testimoniModel->getAllTestimoni();
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -73,34 +75,6 @@ $listTestimoni = $testimoniModel->getAllTestimoni();
       <?php endif; ?>
     </section>
 
-    <section class="testi-form-wrap">
-      <div class="form-container">
-        <h2>Kirim Testimoni</h2>
-
-        <form action="../control/proses_testi.php" method="POST" enctype="multipart/form-data">
-          <label for="nama">Nama</label>
-          <input type="text" name="nama" id="nama" placeholder="Masukkan nama Anda" required>
-
-          <label for="barang">Barang yang Kembali</label>
-          <input type="text" name="barang" id="barang" placeholder="Contoh: Dompet, Laptop, Jaket" required>
-
-          <label for="deskripsi">Deskripsi</label>
-          <textarea name="deskripsi" id="deskripsi" placeholder="Ceritakan pengalaman Anda memakai website ini"
-            required></textarea>
-
-          <label for="gambar">Gambar (Opsional)</label>
-          <input type="file" name="gambar" id="gambar" accept="image/*">
-          <label for="gambar" class="border_kotak"><span>+</span></label>
-
-          <div id="preview-container" class="preview-container hidden">
-            <img id="image-preview" src="" alt="Preview Gambar">
-            <button type="button" id="btn-remove" class="btn-remove" title="Hapus Gambar">x</button>
-          </div>
-
-          <input type="submit" value="KIRIM">
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer>

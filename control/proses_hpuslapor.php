@@ -1,11 +1,11 @@
 <?php
-session_start();
 require_once '../model/laporModel.php';
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     echo "<script>alert('Akses ditolak! Hanya admin yang dapat menghapus postingan.'); window.location='../view/home.php';</script>";
     exit();
 }
+
 
 if (isset($_GET['id']) && isset($_GET['tipe'])) {
     $laporanModel = new LaporanModel();

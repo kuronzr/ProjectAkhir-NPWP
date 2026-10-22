@@ -11,6 +11,7 @@ class TestimoniModel
         $this->db = $koneksi;
     }
 
+    // Menyimpan testimoni ke database
     public function tambahTestimoni($nama, $barang, $pesan, $gambar = null)
     {
         $nama = mysqli_real_escape_string($this->db, $nama);
@@ -24,6 +25,7 @@ class TestimoniModel
         return mysqli_query($this->db, $sql);
     }
 
+    // Mengambil semua testimoni dari database
     public function getAllTestimoni()
     {
         $sql = "SELECT * FROM testimoni ORDER BY created_at DESC";

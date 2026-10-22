@@ -1,5 +1,5 @@
-const MIN_GAMBAR = 3;   // minimal gambar (ubah ke 0 kalau opsional)
-const MAX_GAMBAR = 10;  // maksimal gambar
+const MIN_GAMBAR = 1;   
+const MAX_GAMBAR = 3;  
 
 const input = document.getElementById('gambar');
 const dropzone = document.getElementById('dropzone');
@@ -14,7 +14,6 @@ function showError(msg) {
   errorMsg.classList.toggle('hidden', !msg);
 }
 
-// samakan isi <input type="file"> dengan daftar `files` supaya ikut terkirim
 function syncInput() {
   const dt = new DataTransfer();
   files.forEach((f) => dt.items.add(f));
@@ -69,10 +68,8 @@ function addFiles(list) {
   render();
 }
 
-// pilih lewat dialog "choose file" (bisa pilih banyak sekaligus)
 input.addEventListener('change', () => addFiles([...input.files]));
 
-// seret & lepas
 ['dragenter', 'dragover'].forEach((ev) =>
   dropzone.addEventListener(ev, (e) => {
     e.preventDefault();

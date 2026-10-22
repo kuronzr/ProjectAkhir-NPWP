@@ -1,4 +1,3 @@
-/* Import Google Fonts - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -11,6 +10,7 @@
   --border-color: #cbd5e1;
 }
 
+/* ================= GENERAL STYLES ================= */
 .hidden {
   display: none !important;
 }
@@ -37,7 +37,8 @@ ul {
   list-style: none;
 }
 
-/* ================= STYLING KHUSUS LOGIN & REGISTRASI ================= */
+
+/* ================= AUTH PAGES (LOGIN & REGISTER) ================= */
 body.auth-body {
   display: flex;
   justify-content: center;
@@ -161,7 +162,6 @@ nav a:hover {
   color: var(--accent);
 }
 
-/* Dropdown Menu */
 .dropdown {
   position: relative;
 }
@@ -314,7 +314,6 @@ article {
 }
 
 mark {
-  background-color: var(--accent);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.85rem;
@@ -390,7 +389,6 @@ mark {
   font-size: 0.88rem;
 }
 
-/* Badge Jenis Keluhan */
 .badge-jenis {
   display: inline-block;
   background-color: #ffd500;
@@ -483,7 +481,6 @@ form input[type="submit"]:hover {
   background-color: #0c4a6e;
 }
 
-/* Dropzone & File Upload Styling */
 .border_kotak.dropzone,
 .border_kotak {
   border: 2px dashed var(--border-color);
@@ -668,13 +665,11 @@ form input[type="submit"]:hover {
   position: relative;
 }
 
-/* Baris atas profil: Avatar di kiri, Tombol Edit di kanan */
 .profile-header-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   margin-top: -75px;
-  /* Menarik avatar ke atas menumpuk banner */
   margin-bottom: 1rem;
 }
 
@@ -730,7 +725,6 @@ form input[type="submit"]:hover {
   font-size: 0.95rem;
 }
 
-/* Modal Edit Profile */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -917,9 +911,7 @@ footer {
   width: 100vw;
   height: 100vh;
   background-color: #1e1e1e;
-  /* Latar gelap */
   z-index: 99999;
-  /* Memastikan muncul di paling depan */
   display: flex;
   flex-direction: column;
 }

@@ -1,0 +1,70 @@
+DROP DATABASE IF EXISTS LnfUAS_DB;
+
+CREATE DATABASE LnfUAS_DB;
+USE LnfUAS_DB;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    bio TEXT NULL,
+    avatar VARCHAR(255) NULL,
+    banner VARCHAR(255) NULL,
+    role ENUM('user', 'admin') DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE laporan_kehilangan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NULL,
+    nama VARCHAR(100) NOT NULL,
+    kategori VARCHAR(50) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    tempat VARCHAR(150) NOT NULL,
+    tanggal DATE NOT NULL,
+    notelp VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TABLE laporan_menemukan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NULL,
+    nama VARCHAR(100) NOT NULL,
+    kategori VARCHAR(50) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    tempat VARCHAR(150) NOT NULL,
+    tanggal DATE NOT NULL,
+    notelp VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TABLE gambar_laporan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    laporan_id INT NOT NULL,
+    tipe_laporan ENUM('kehilangan', 'menemukan') NOT NULL,
+    nama_file VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE keluhan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    jenis VARCHAR(50) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE testimoni (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NULL,
+    nama VARCHAR(100) NOT NULL,
+    barang VARCHAR(100) NOT NULL,
+    jenis VARCHAR(50) NOT NULL,
+    pesan TEXT NOT NULL,
+    gambar VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);

@@ -1,11 +1,12 @@
 <?php
+session_start();
 require_once '../model/laporModel.php';
 require_once '../model/gambarModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $laporanModel = new LaporanModel();
     $gambarModel = new GambarModel();
-
+    $user_id = $_SESSION['user']['id'] ?? NULL;
     $nama = $_POST['nama'] ?? '';
     $kategori = $_POST['kategori'] ?? '';
     $deskripsi = $_POST['deskripsi'] ?? '';
@@ -13,11 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tanggal = $_POST['tanggal'] ?? '';
     $notelp = $_POST['notelp'] ?? '';
 
-    // 1. Simpan laporan kehilangan menggunakan LaporanModel
-    $laporan_id = $laporanModel->tambahKehilangan($nama, $kategori, $deskripsi, $tempat, $tanggal, $notelp);
+    
+    $laporan_id = $laporanModel->tambahKehilangan($user_id, $nama, $kategori, $deskripsi, $tempat, $tanggal, $notelp);
 
     if ($laporan_id) {
-        // 2. Upload file fisik dan simpan referensi nama file via GambarModel
+        // Upload file gambar
         if (isset($_FILES['gambar']) && !empty($_FILES['gambar']['name'][0])) {
             $target_dir = "../public/uploads/";
 
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        echo "<script>alert('Laporan kehilangan berhasil dikirim!'); window.location='../view/form_khilangan.php';</script>";
+        echo "<script>alert('Laporan kehilangan berhasil dikirim!'); window.location='../view/home.php';</script>";
     } else {
         echo "<script>alert('Gagal menyimpan laporan kehilangan.'); window.location='../view/form_khilangan.php';</script>";
     }
