@@ -22,7 +22,7 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8" />
@@ -114,11 +114,18 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
     <?php if ($isLoggedIn): ?>
       <p>
         Filter:
-        <a href="home.php?filter=semua<?= !empty($kategori) ? '&kategori=' . urlencode($kategori) : ''; ?>">Semua</a> |
-        <a href="home.php?filter=hilang<?= !empty($kategori) ? '&kategori=' . urlencode($kategori) : ''; ?>">Barang
-          Hilang</a> |
-        <a href="home.php?filter=ditemukan<?= !empty($kategori) ? '&kategori=' . urlencode($kategori) : ''; ?>">Barang
-          Ditemukan</a>
+        <a href="home.php?filter=semua<?= !empty($kategori) ? '&kategori=' . urlencode($kategori) : ''; ?>"
+          class="<?= ($filter === 'semua') ? 'filter-active' : ''; ?>">
+          Semua Laporan
+        </a> |
+        <a href="home.php?filter=hilang<?= !empty($kategori) ? '&kategori=' . urlencode($kategori) : ''; ?>"
+          class="<?= ($filter === 'hilang') ? 'filter-active' : ''; ?>">
+          Barang Hilang
+        </a> |
+        <a href="home.php?filter=ditemukan<?= !empty($kategori) ? '&kategori=' . urlencode($kategori) : ''; ?>"
+          class="<?= ($filter === 'ditemukan') ? 'filter-active' : ''; ?>">
+          Barang Ditemukan
+        </a>
 
         <?php if (!empty($kategori)): ?>
           <br><small>Menampilkan kategori: <strong><?= htmlspecialchars($kategori); ?></strong> (<a href="home.php">Reset
@@ -132,19 +139,18 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
           $semua_gambar = $gambarModel->getAllGambarByLaporan($row['id'], $row['tipe']);
           ?>
 
-          <article style="position: relative; padding-bottom: 20px;">
+          <article class="home-post-card">
             <p><strong>Pelapor:</strong> <?= htmlspecialchars($row['nama']); ?></p>
             <p><strong>Status:</strong> <?= htmlspecialchars($row['status']); ?></p>
 
-            <div style="margin: 10px 0; display: flex; gap: 10px; flex-wrap: wrap;">
+            <div class="home-post-gallery">
               <?php if (!empty($semua_gambar)): ?>
                 <?php foreach ($semua_gambar as $g): ?>
                   <img src="../public/uploads/<?= htmlspecialchars($g['nama_file']); ?>" alt="Gambar Barang"
-                    class="img-previewable"
-                    style="max-width: 120px; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                    class="img-previewable home-post-img">
                 <?php endforeach; ?>
               <?php else: ?>
-                <img src="../public/gambar/default.jpg" alt="Gambar Default" style="max-width: 120px; border-radius: 8px;">
+                <img src="../public/gambar/default.jpg" alt="Gambar Default" class="home-post-img">
               <?php endif; ?>
             </div>
 
@@ -156,8 +162,7 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
 
             <!-- Tombol Kontak & Admin -->
             <button type="button" class="btn-kontak" data-nama="<?= htmlspecialchars($row['nama']); ?>"
-              data-nohp="<?= htmlspecialchars($row['no_hp'] ?? 'Tidak dicantumkan'); ?>" data-tipe="<?= $row['tipe']; ?>"
-              style="background-color: #082f49; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+              data-nohp="<?= htmlspecialchars($row['no_hp'] ?? 'Tidak dicantumkan'); ?>" data-tipe="<?= $row['tipe']; ?>">
               <?= ($row['tipe'] === 'menemukan') ? 'Lihat Detail & Klaim' : 'Hubungi Pelapor'; ?>
             </button>
 
@@ -177,13 +182,11 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
       <?php endif; ?>
 
     <?php else: ?>
-      <div
-        style="text-align: center; padding: 40px 20px; background: #fff; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 15px;">
-        <p style="font-size: 1.1rem; color: #64748b; margin-bottom: 15px;">
+      <div class="login-prompt-box">
+        <p class="login-prompt-text">
           Silakan <strong>Login</strong> terlebih dahulu untuk melihat daftar laporan barang hilang dan ditemukan.
         </p>
-        <a href="login.php"
-          style="background-color: #082f49; color: #ffffff; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; display: inline-block;">
+        <a href="login.php" class="btn-login-prompt">
           Login Sekarang
         </a>
       </div>
@@ -209,8 +212,8 @@ $laporanList = $laporanModel->getAllLaporan($filter, $kategori);
 
       <div class="modal-contact-box">
         <p><strong>Nama Pelapor:</strong> <span id="modalNama">-</span></p>
-        <p style="margin-top: 10px;"><strong>No. WhatsApp / HP:</strong></p>
-        <p style="margin-top: 5px;">
+        <p class="modal-nohp-wrapper"><strong>No. WhatsApp / HP:</strong></p>
+        <p class="modal-nohp-link">
           <a id="modalNoHp" href="#" target="_blank">-</a>
         </p>
       </div>
